@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Cat Rates</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="error_loading_cats">An error occurred loading cats! 😿</string>
+    <string name="saved_this_cat">Saved this cat. 😻</string>
+    <string name="saved_at" formatted="false">Saved at %s ❤️</string>
+</resources>

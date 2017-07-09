@@ -1,0 +1,112 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "com.example.catrates"
+        minSdkVersion 21
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation":
+                                     "$projectDir/schemas".toString()]
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
+}
+
+kapt {
+    generateStubs = true
+}
+
+final SUPPORT_VERSION = "26.0.0-beta2"
+final NYT_STORE_VERSION = "2.1.0"
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testImplementation 'junit:junit:4.12'
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    // All the supporty things
+
+    implementation "com.android.support:design:$SUPPORT_VERSION"
+    implementation "com.android.support:appcompat-v7:$SUPPORT_VERSION"
+    implementation "com.android.support:support-v4:$SUPPORT_VERSION"
+    implementation "com.android.support:cardview-v7:$SUPPORT_VERSION"
+
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    // NYT Store
+
+    implementation "com.nytimes.android:cache:$NYT_STORE_VERSION"
+    implementation "com.nytimes.android:store:$NYT_STORE_VERSION"
+    implementation "com.nytimes.android:middleware:$NYT_STORE_VERSION"
+    implementation "com.nytimes.android:filesystem:$NYT_STORE_VERSION"
+
+    // Room persistence
+
+    implementation "android.arch.persistence.room:runtime:1.0.0-alpha3"
+    annotationProcessor "android.arch.persistence.room:compiler:1.0.0-alpha3"
+    kapt "android.arch.persistence.room:compiler:1.0.0-alpha3"
+
+    // Dagger All The things
+
+    implementation "com.google.dagger:dagger:2.11"
+    annotationProcessor "com.google.dagger:dagger-compiler:2.11"
+    kapt "com.google.dagger:dagger-compiler:2.11"
+    compileOnly 'javax.annotation:jsr250-api:1.0'
+    implementation 'com.google.dagger:dagger-android:2.11'
+    implementation 'com.google.dagger:dagger-android-support:2.11'
+    annotationProcessor "com.google.dagger:dagger-android-processor:2.11"
+    kapt "com.google.dagger:dagger-android-processor:2.11"
+
+    // RxAndroid
+    implementation 'io.reactivex:rxandroid:1.2.1'
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava:2.3.0'
+
+    // Simple XML parser
+    implementation('org.simpleframework:simple-xml:2.7.1') {
+        exclude group: 'xpp3', module: 'xpp3'
+        exclude group: 'stax', module: 'stax-api'
+        exclude group: 'stax', module: 'stax'
+    }
+
+
+    implementation 'com.jakewharton.timber:timber:4.5.1'
+
+    implementation 'com.jakewharton:butterknife:8.7.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
+    kapt 'com.jakewharton:butterknife-compiler:8.7.0'
+
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
+
+    implementation 'net.danlew:android.joda:2.9.9'
+}
