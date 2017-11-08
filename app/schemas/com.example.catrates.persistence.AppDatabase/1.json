@@ -2,31 +2,35 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "4086c17f719ae223bf28aaca674fcef6",
+    "identityHash": "02989b262e7658a1a61c75f067a70ae9",
     "entities": [
       {
         "tableName": "Cat",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT, `url` TEXT, `sourceUrl` TEXT, `savedTime` INTEGER, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `url` TEXT, `sourceUrl` TEXT, `savedTime` INTEGER NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "id",
-            "affinity": "TEXT"
+            "affinity": "TEXT",
+            "notNull": true
           },
           {
             "fieldPath": "url",
             "columnName": "url",
-            "affinity": "TEXT"
+            "affinity": "TEXT",
+            "notNull": false
           },
           {
             "fieldPath": "sourceUrl",
             "columnName": "sourceUrl",
-            "affinity": "TEXT"
+            "affinity": "TEXT",
+            "notNull": false
           },
           {
             "fieldPath": "savedTime",
             "columnName": "savedTime",
-            "affinity": "INTEGER"
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -41,7 +45,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"4086c17f719ae223bf28aaca674fcef6\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"02989b262e7658a1a61c75f067a70ae9\")"
     ]
   }
 }

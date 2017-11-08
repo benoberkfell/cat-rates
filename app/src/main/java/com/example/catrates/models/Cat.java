@@ -2,6 +2,7 @@ package com.example.catrates.models;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
@@ -11,6 +12,7 @@ import org.simpleframework.xml.Root;
 public class Cat {
 
     @PrimaryKey
+    @NonNull
     @Element(name = "id")
     private String id;
 
