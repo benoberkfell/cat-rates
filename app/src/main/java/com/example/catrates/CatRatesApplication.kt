@@ -5,6 +5,7 @@ import android.app.Application
 import android.content.SharedPreferences
 import com.example.catrates.di.DaggerAppComponent
 import com.example.catrates.di.modules.AppModule
+import com.nytimes.android.external.fs3.PathResolver
 import com.nytimes.android.external.store3.base.impl.BarCode
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -19,6 +20,8 @@ class CatRatesApplication : Application(), HasActivityInjector {
     @Inject lateinit var dispatchingActivityInjector : DispatchingAndroidInjector<Activity>
 
     @Inject lateinit var sharedPrefs: SharedPreferences
+
+    @Inject lateinit var pathResolver: PathResolver<BarCode>
 
     val APPLIED_RES_PREF = "APPLIED_RES"
 
@@ -51,7 +54,7 @@ class CatRatesApplication : Application(), HasActivityInjector {
 
             val inputStream = assets.open("preloaded_cats.xml")
 
-            val outputFile = File(cacheDir, barcode.toString())
+            val outputFile = File(cacheDir, pathResolver.resolve(barcode))
 
             val source = Okio.source(inputStream)
 
