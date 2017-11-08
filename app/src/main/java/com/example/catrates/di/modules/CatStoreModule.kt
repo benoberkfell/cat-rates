@@ -3,6 +3,7 @@ package com.example.catrates.di.modules
 import com.example.catrates.catapi.CatApi
 import com.example.catrates.annotations.StoreCacheDir
 import com.example.catrates.catapi.CatResponse
+import com.example.catrates.data.CatParser
 import com.nytimes.android.external.fs3.SourcePersisterFactory
 import com.nytimes.android.external.store3.base.impl.BarCode
 import com.nytimes.android.external.store3.base.impl.Store
@@ -10,7 +11,6 @@ import com.nytimes.android.external.store3.base.impl.StoreBuilder
 import dagger.Module
 import dagger.Provides
 import okio.BufferedSource
-import org.simpleframework.xml.core.Persister
 import java.io.File
 
 @Module
@@ -26,9 +26,7 @@ class CatStoreModule {
                     }
                 }
                 .persister(SourcePersisterFactory.create(cacheDir))
-                .parser { t: BufferedSource? ->
-                    Persister().read(CatResponse::class.java, t?.inputStream())
-                }
+                .parser(CatParser())
                 .open()
     }
 
