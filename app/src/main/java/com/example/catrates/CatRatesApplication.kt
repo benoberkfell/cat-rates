@@ -5,7 +5,7 @@ import android.app.Application
 import android.content.SharedPreferences
 import com.example.catrates.di.DaggerAppComponent
 import com.example.catrates.di.modules.AppModule
-import com.nytimes.android.external.store.base.impl.BarCode
+import com.nytimes.android.external.store3.base.impl.BarCode
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector

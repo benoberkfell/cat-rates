@@ -3,10 +3,10 @@ package com.example.catrates.di.modules
 import com.example.catrates.catapi.CatApi
 import com.example.catrates.annotations.StoreCacheDir
 import com.example.catrates.catapi.CatResponse
-import com.nytimes.android.external.fs.SourcePersisterFactory
-import com.nytimes.android.external.store.base.impl.BarCode
-import com.nytimes.android.external.store.base.impl.Store
-import com.nytimes.android.external.store.base.impl.StoreBuilder
+import com.nytimes.android.external.fs3.SourcePersisterFactory
+import com.nytimes.android.external.store3.base.impl.BarCode
+import com.nytimes.android.external.store3.base.impl.Store
+import com.nytimes.android.external.store3.base.impl.StoreBuilder
 import dagger.Module
 import dagger.Provides
 import okio.BufferedSource
@@ -22,7 +22,7 @@ class CatStoreModule {
         return StoreBuilder.parsedWithKey<BarCode, BufferedSource, CatResponse>()
                 .fetcher {
                     api.fetchCatPictures().map {
-                            it?.source()
+                            it.source()
                     }
                 }
                 .persister(SourcePersisterFactory.create(cacheDir))

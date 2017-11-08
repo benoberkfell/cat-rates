@@ -5,7 +5,7 @@ import com.example.catrates.catapi.CatApi
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 
 @Module
 class RestModule {
@@ -15,7 +15,7 @@ class RestModule {
 
         return Retrofit.Builder()
                 .baseUrl("http://thecatapi.com")
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .validateEagerly(BuildConfig.DEBUG)
                 .build()
                 .create(CatApi::class.java)

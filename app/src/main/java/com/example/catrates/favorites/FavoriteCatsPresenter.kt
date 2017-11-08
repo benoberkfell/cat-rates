@@ -1,16 +1,12 @@
 package com.example.catrates.favorites
 
-import com.example.catrates.persistence.CatDao
 import com.example.catrates.models.Cat
 import com.example.catrates.persistence.FavoriteCatsRepository
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
 import org.joda.time.format.DateTimeFormatter
-import rx.Emitter
-import rx.Observable
-import rx.android.schedulers.AndroidSchedulers
-import rx.functions.Action1
-import rx.schedulers.Schedulers
 import javax.inject.Inject
 
 class FavoriteCatsPresenter @Inject constructor(val repo: FavoriteCatsRepository) {

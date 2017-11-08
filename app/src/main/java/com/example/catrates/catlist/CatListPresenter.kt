@@ -1,15 +1,13 @@
 package com.example.catrates.catlist
 
-import com.example.catrates.persistence.CatDao
 import com.example.catrates.catapi.CatResponse
 import com.example.catrates.models.Cat
 import com.example.catrates.persistence.FavoriteCatsRepository
-import com.nytimes.android.external.store.base.impl.BarCode
-import com.nytimes.android.external.store.base.impl.Store
-import rx.Completable
-import rx.Observable
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
+import com.nytimes.android.external.store3.base.impl.BarCode
+import com.nytimes.android.external.store3.base.impl.Store
+import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -33,7 +31,7 @@ class CatListPresenter @Inject constructor(val catStore: Store<CatResponse, BarC
         subscribeToCats(catStore.get(barCode))
     }
 
-    private fun subscribeToCats(observable: Observable<CatResponse>) {
+    private fun subscribeToCats(observable: Single<CatResponse>) {
         observable.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({

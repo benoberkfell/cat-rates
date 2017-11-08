@@ -13,8 +13,8 @@ import butterknife.ButterKnife
 import com.example.catrates.catapi.CatResponse
 import com.example.catrates.catlist.CatsFragment
 import com.example.catrates.favorites.FavoriteCatsFragment
-import com.nytimes.android.external.store.base.impl.BarCode
-import com.nytimes.android.external.store.base.impl.Store
+import com.nytimes.android.external.store3.base.impl.BarCode
+import com.nytimes.android.external.store3.base.impl.Store
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector

@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 27
@@ -35,12 +36,8 @@ android {
     }
 }
 
-kapt {
-    generateStubs = true
-}
-
 final SUPPORT_VERSION = "27.0.0"
-final NYT_STORE_VERSION = "2.1.0"
+final NYT_STORE_VERSION = "3.0.0-beta"
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -62,34 +59,32 @@ dependencies {
 
     // NYT Store
 
-    implementation "com.nytimes.android:cache:$NYT_STORE_VERSION"
-    implementation "com.nytimes.android:store:$NYT_STORE_VERSION"
-    implementation "com.nytimes.android:middleware:$NYT_STORE_VERSION"
-    implementation "com.nytimes.android:filesystem:$NYT_STORE_VERSION"
+    implementation "com.nytimes.android:cache3:$NYT_STORE_VERSION"
+    implementation "com.nytimes.android:store3:$NYT_STORE_VERSION"
+    implementation "com.nytimes.android:middleware3:$NYT_STORE_VERSION"
+    implementation "com.nytimes.android:filesystem3:$NYT_STORE_VERSION"
 
     // Room persistence
 
     implementation "android.arch.persistence.room:runtime:1.0.0"
-    annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
     kapt "android.arch.persistence.room:compiler:1.0.0"
 
     // Dagger All The things
 
     implementation "com.google.dagger:dagger:2.12"
-    annotationProcessor "com.google.dagger:dagger-compiler:2.12"
     kapt "com.google.dagger:dagger-compiler:2.12"
     compileOnly 'javax.annotation:jsr250-api:1.0'
     implementation 'com.google.dagger:dagger-android:2.12'
     implementation 'com.google.dagger:dagger-android-support:2.12'
-    annotationProcessor "com.google.dagger:dagger-android-processor:2.12"
     kapt "com.google.dagger:dagger-android-processor:2.12"
 
     // RxAndroid
-    implementation 'io.reactivex:rxandroid:1.2.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.6'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
 
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
 
     // Simple XML parser
     implementation('org.simpleframework:simple-xml:2.7.1') {
@@ -102,7 +97,6 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:4.5.1'
 
     implementation 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     kapt 'com.jakewharton:butterknife-compiler:8.8.1'
 
     implementation 'com.squareup.picasso:picasso:2.5.2'
