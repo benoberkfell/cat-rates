@@ -10,11 +10,13 @@ import com.example.catrates.models.Cat;
 
 import java.util.List;
 
+import io.reactivex.Single;
+
 @Dao
 public interface CatDao {
 
     @Query("SELECT * FROM cat")
-    List<Cat> getAll();
+    Single<List<Cat>> getAll();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(Cat... cats);

@@ -7,12 +7,7 @@ import io.reactivex.Observable
 class FavoriteCatsRepository constructor(val catDao: CatDao) {
 
     fun get() : Observable<List<Cat>> {
-
-        return Observable.create { emitter ->
-            val cats = catDao.all
-            emitter.onNext(cats)
-            emitter.onComplete()
-        }
+        return catDao.all.toObservable()
     }
 
     fun put(cat: Cat) : Completable {
